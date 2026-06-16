@@ -225,7 +225,8 @@ async function helpCommand(sock, chatId, message) {
 Join our channel for updates:`;
 
     try {
-        const imagePath = path.join(__dirname, '../assets/bot_image.jpg');
+        // Updated path to match the image name from the assets folder screenshot
+        const imagePath = path.join(__dirname, '../assets/1781598211241.png');
         
         if (fs.existsSync(imagePath)) {
             const imageBuffer = fs.readFileSync(imagePath);
@@ -251,6 +252,7 @@ Join our channel for updates:`;
                 }
             },{ quoted: message });
         } else {
+            // Updated fallback Newsletter JID for text-only message
             await sock.sendMessage(chatId, { 
                 text: helpMessage,
                 contextInfo: {
