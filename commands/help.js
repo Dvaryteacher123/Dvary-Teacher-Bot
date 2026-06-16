@@ -5,9 +5,9 @@ const path = require('path');
 async function helpCommand(sock, chatId, message) {
     const helpMessage = `
 ╔═══════════════════╗
-   *🤖 ${settings.botName || 'KnightBot-MD'}*  
+   *🤖 Dvary Bot*  
    Version: *${settings.version || '3.0.0'}*
-   by ${settings.botOwner || 'Mr Unique Hacker'}
+   by Dvary
    YT : ${global.ytch}
 ╚═══════════════════╝
 
@@ -238,13 +238,19 @@ Join our channel for updates:`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD',
+                        newsletterName: 'Dvary Bot Updates',
                         serverMessageId: -1
+                    },
+                    externalAdReply: {
+                        title: 'Dvary Official Channel',
+                        body: 'Click here to join the channel',
+                        mediaType: 1,
+                        sourceUrl: 'https://whatsapp.com/channel/0029VbCRC9b5fM5cruU8PF2M',
+                        thumbnail: imageBuffer
                     }
                 }
             },{ quoted: message });
         } else {
-            console.error('Bot image not found at:', imagePath);
             await sock.sendMessage(chatId, { 
                 text: helpMessage,
                 contextInfo: {
@@ -252,7 +258,7 @@ Join our channel for updates:`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD by Mr Unique Hacker',
+                        newsletterName: 'Dvary Bot Updates',
                         serverMessageId: -1
                     } 
                 }
@@ -265,3 +271,4 @@ Join our channel for updates:`;
 }
 
 module.exports = helpCommand;
+
