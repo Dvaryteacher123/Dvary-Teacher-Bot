@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dvary Pair</title>
+    <style>
+        body { background: #121212; color: white; text-align: center; padding: 50px; font-family: sans-serif; }
+        .code-box { background: #333; padding: 20px; font-size: 2rem; color: #00e676; margin-top: 20px; display: none; }
+    </style>
+</head>
+<body>
+    <h1>Dvary Pairing</h1>
+    <input type="text" id="num" placeholder="2557...">
+    <button onclick="startPairing()">Unganisha</button>
+    <div class="code-box" id="code-display"></div>
+
+    <script>
+        async function startPairing() {
+            let num = document.getElementById('num').value;
+            await fetch('/pair?number=' + num);
+            
+            const interval = setInterval(async () => {
+                let res = await fetch('/get-code');
+                let data = await res.json();
+                if (data.code) {
+                    clearInterval(interval);
+                    document.getElementById('code-display').innerText = data.code;
+                    document.getElementById('code-display').style.display = 'block';
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
